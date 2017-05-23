@@ -12,3 +12,5 @@ https://docs.google.com/document/d/14wxr0-pbLXOAIAYS-ZCTOFVp2HvphpBNQSDRwLVEYEY/
 https://2ch.pm/gd/res/402688.html
 ###Чат /gd/ в Telegram:
 https://t.me/gdchat
+### Таски в трелло
+https://trello.com/invite/b/Vk1mcXi0/46e138f09ad1ae7b929c76d62ca0adcf/igra
