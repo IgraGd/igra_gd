@@ -14,3 +14,5 @@ https://2ch.pm/gd/res/402688.html
 https://t.me/gdchat
 ### Таски в трелло
 https://trello.com/invite/b/Vk1mcXi0/46e138f09ad1ae7b929c76d62ca0adcf/igra
+### Дискорд конфа
+https://discord.gg/7CdCDu
