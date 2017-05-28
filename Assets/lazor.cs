@@ -14,9 +14,9 @@ public class lazor : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetMouseButton(0)) {
-			ray = cam.ScreenPointToRay(Input.mousePosition);
+			//ray = cam.ScreenPointToRay(Input.mousePosition);
+			ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 			if (Physics.Raycast(ray, out hit)) {
-				Debug.Log(hit.point);
 				lineRenderer.SetPosition(0, transform.position);
 				lineRenderer.SetPosition(1, hit.point);
 			} else {
