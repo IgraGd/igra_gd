@@ -12,18 +12,35 @@ public class pobegushki : MonoBehaviour {
 	public float jumpSpeed = 8f;
 	public float jumpLimit = 5f;
 	public float jumpedSource_y = 0;
+	public bool facingCamera = false;
+	private Animator animator;
 	private bool jumpFinished = false;
 	private bool secondJumpUsed = false;
 	private bool secondJumpFinished = false;
 	private bool jumpReleased = false;
+	private float v = 0f;
+	private float h = 0f;
+	private Vector3 camRotation;
 
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		cam = GameObject.Find("Camera");
+		animator = GetComponent<Animator>();
 	}
 
 	void Update () {
-		moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		h = Input.GetAxisRaw("Horizontal");
+		v = Input.GetAxisRaw("Vertical");
+
+		if (v > 0.1f) {
+			facingCamera = false;
+		}
+
+		if (v < -0.1f) {
+			facingCamera = true;
+		}
+
+		moveDirection = new Vector3(h, 0, v);
 		moveDirection = cam.transform.TransformDirection(moveDirection);
 		moveDirection.y = 0.0f;
 		//moveDirection = transform.TransformDirection(moveDirection);
@@ -68,6 +85,17 @@ public class pobegushki : MonoBehaviour {
 		controller.Move(moveDirection * Time.deltaTime);
 		moveDirectionNo_y = moveDirection;
 		moveDirectionNo_y.y = 0f;
-		transform.rotation = Quaternion.LookRotation(moveDirectionNo_y, Vector3.up);
+
+		if (facingCamera == true) {
+			camRotation = cam.transform.TransformDirection(-Vector3.forward);
+			animator.SetFloat("h", -h);
+			animator.SetFloat("v", -v);
+		} else {
+			camRotation = cam.transform.TransformDirection(Vector3.forward);
+			animator.SetFloat("h", h);
+			animator.SetFloat("v", v);
+		}
+		camRotation.y = 0;
+		transform.rotation = Quaternion.LookRotation(camRotation, Vector3.up);
 	}
 }
